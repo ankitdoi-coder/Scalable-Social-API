@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -17,10 +19,13 @@ public class User {
     private Long id;
 
     @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Post> posts;
 
     @OneToMany(mappedBy="user",cascade=CascadeType.ALL)
+    @JsonIgnore
     private List <Comment> comments;
+
 
     private String userName;
 

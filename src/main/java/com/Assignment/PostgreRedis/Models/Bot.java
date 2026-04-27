@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "bots")
@@ -20,5 +21,6 @@ public class Bot {
     private String persona_description;
 
     @OneToMany(mappedBy="bot")
+    @JsonIgnore
     private List<Comment> comments;
 }

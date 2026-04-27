@@ -5,7 +5,7 @@ A high-performance, production-ready backend REST API for a social blogging and 
 ## 🚀 Tech Stack & Architecture
 
 *   **Language:** Java 17+
-*   **Framework:** Spring Boot 3.x (Spring Web, Spring Data JPA)
+*   **Framework:** Spring Boot 3.5 (Spring Web, Spring Data JPA)
 *   **Primary Database:** PostgreSQL
 *   **Caching Layer:** Redis
 *   **Build Tool:** Maven

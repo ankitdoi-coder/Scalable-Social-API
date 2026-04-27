@@ -11,9 +11,12 @@ import java.util.*;
 @AllArgsConstructor
 public class PostRequest {
     private String userName;
-    private boolean isPremium;
-    private String bot;
+    private boolean premium;
 
+    //If Boat is there is boat fields
+    private String bot;
+    private String personaDescription;
+    
     private List<String> comments;
     
     private String content;

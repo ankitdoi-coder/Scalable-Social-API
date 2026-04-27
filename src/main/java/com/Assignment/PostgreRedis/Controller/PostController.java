@@ -10,6 +10,7 @@ import com.Assignment.PostgreRedis.Services.AppService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api")
@@ -21,7 +22,7 @@ public class PostController {
 
     //create a Post
     @PostMapping("/createPost")
-    public ResponseEntity<Post> createPost(PostRequest postRequest){
+    public ResponseEntity<Post> createPost(@RequestBody PostRequest postRequest){
         Post post =appService.createPost(postRequest);
         return new ResponseEntity<>(post,HttpStatus.CREATED);
     }

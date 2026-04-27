@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "comments")
@@ -16,30 +16,32 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Comment {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id",nullable=false)
+    @JoinColumn(name = "post_id", nullable = false)
+    @JsonIgnore
     private Post post;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bot_id",nullable=true)
+    @JoinColumn(name = "bot_id", nullable = true)
+    @JsonIgnore
     private Bot bot;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",nullable=true)
+    @JoinColumn(name = "user_id", nullable = true)
+    @JsonIgnore
     private User user;
-
 
     private String content;
 
     private int depthLevel;
 
-
     private LocalDateTime createdAt;
+
     @PrePersist
     public void prePersist() {
-        createdAt=LocalDateTime.now();
+        createdAt = LocalDateTime.now();
     }
 }
