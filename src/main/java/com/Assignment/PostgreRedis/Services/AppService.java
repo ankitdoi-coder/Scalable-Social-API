@@ -8,10 +8,13 @@ import com.Assignment.PostgreRedis.Repositories.BotRepository;
 import com.Assignment.PostgreRedis.Models.Post;
 import com.Assignment.PostgreRedis.Models.Bot;
 import com.Assignment.PostgreRedis.Models.User;
+import com.Assignment.PostgreRedis.DTO.CommentRequest;
 import com.Assignment.PostgreRedis.DTO.PostRequest;
 import com.Assignment.PostgreRedis.Models.Comment;
 import java.util.stream.Collectors;
 import java.util.*;
+import com.Assignment.PostgreRedis.Repositories.CommentRepository;
+
 
 @Service
 public class AppService {
@@ -22,7 +25,9 @@ public class AppService {
     @Autowired
     private BotRepository botRepo;
 
-    
+    @Autowired
+    private CommentRepository commentRepo;
+
 
     // Create Post
     public Post createPost(PostRequest postRequest) {
@@ -69,5 +74,34 @@ public class AppService {
 
         postRepo.save(post);
         return post;
+    }
+
+
+
+
+    //Commment on a Post
+    public Comment postCommment(Long postId,CommentRequest commentRequest){
+        Comment newComment=new Comment();
+
+        //Normal Entries
+        // newComment.setId(commentRequest.getId());
+        newComment.setContent(commentRequest.getContent());
+        newComment.setDepthLevel(commentRequest.getDepthLevel());
+
+        //Object entries
+        newComment.setPost(postRepo.findById(commentRequest.getPostId())
+        .orElseThrow(()-> new RuntimeException("Post not found")));
+
+        if(commentRequest.getBotId() !=null ){
+            newComment.setBot(botRepo.findById(commentRequest.getBotId())
+            .orElseThrow(()-> new RuntimeException("Bot not found")));
+        }
+
+        newComment.setUser(userRepo.findById(commentRequest.getUserId())
+        .orElseThrow(()-> new RuntimeException("User not found")));
+
+
+        commentRepo.save(newComment);
+        return newComment;
     }
 }
