@@ -31,6 +31,8 @@ public class Post {
 
     private String content;
 
+    private int likesCount;
+
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)

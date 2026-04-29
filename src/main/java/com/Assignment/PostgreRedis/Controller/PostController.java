@@ -10,6 +10,7 @@ import com.Assignment.PostgreRedis.Services.AppService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -25,5 +26,12 @@ public class PostController {
     public ResponseEntity<Post> createPost(@RequestBody PostRequest postRequest){
         Post post =appService.createPost(postRequest);
         return new ResponseEntity<>(post,HttpStatus.CREATED);
+    }
+
+    // Like a Post
+    @PostMapping("/posts/{postId}/like")
+    public ResponseEntity<Post> likePost(@PathVariable Long postId) {
+        Post post = appService.likePost(postId);
+        return new ResponseEntity<>(post, HttpStatus.OK);
     }
 }

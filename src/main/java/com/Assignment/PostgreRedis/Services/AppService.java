@@ -104,4 +104,12 @@ public class AppService {
         commentRepo.save(newComment);
         return newComment;
     }
+
+    // Like a Post
+    public Post likePost(Long postId) {
+        Post post = postRepo.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Post not found"));
+        post.setLikesCount(post.getLikesCount() + 1);
+        return postRepo.save(post);
+    }
 }
