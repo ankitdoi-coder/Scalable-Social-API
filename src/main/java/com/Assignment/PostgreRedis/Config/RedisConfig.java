@@ -1,0 +1,16 @@
+package com.Assignment.PostgreRedis.Config;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+
+@Configuration
+public class RedisConfig {
+    
+    @Bean
+    public RedisTemplate<String,String> redisTemplate(RedisConnectionFactory factory){
+        RedisTemplate<String,String> template=new RedisTemplate<>();
+        template.setConnectionFactory(factory);
+        template.setKeySerializer(new StringRedisSerializer());
+        return template;
+    }
+}

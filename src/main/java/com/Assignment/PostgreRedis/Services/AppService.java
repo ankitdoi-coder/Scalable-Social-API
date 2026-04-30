@@ -109,7 +109,8 @@ public class AppService {
     public Post likePost(Long postId) {
         Post post = postRepo.findById(postId)
                 .orElseThrow(() -> new RuntimeException("Post not found"));
-        post.setLikesCount(post.getLikesCount() + 1);
+        int currentLikes = post.getLikesCount() != null ? post.getLikesCount() : 0;
+        post.setLikesCount(currentLikes + 1);
         return postRepo.save(post);
     }
 }

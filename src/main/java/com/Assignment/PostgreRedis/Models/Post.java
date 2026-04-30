@@ -31,7 +31,8 @@ public class Post {
 
     private String content;
 
-    private int likesCount;
+    @Column(name="likes_count")
+    private Integer likesCount = 0;
 
     private LocalDateTime createdAt;
 
