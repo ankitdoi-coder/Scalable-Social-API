@@ -9,6 +9,7 @@ A high-performance, production-ready backend REST API for a social blogging and 
 *   **Primary Database:** PostgreSQL
 *   **Caching Layer:** Redis
 *   **Build Tool:** Maven
+*   **Testing Tool:** Postman
 
 ## ✨ Key Features & Engineering Focus
 
